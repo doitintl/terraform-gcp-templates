@@ -75,7 +75,6 @@ resource "google_monitoring_notification_channel" "monitoring_notification_chann
   labels = {
     email_address = each.value.email_address
   }
-  provider = google-beta
 }
 
 resource "google_monitoring_alert_policy" "policies" {
@@ -108,15 +107,15 @@ resource "google_monitoring_alert_policy" "policies" {
 
 module "projects_log_metrics" {
   for_each = toset([
-    data.google_project.production,
-    data.google_project.staging,
-    data.google_project.billing,
-    data.google_project.development,
-    data.google_project.monitoring,
-    data.google_project.shared_network_production,
-    data.google_project.shared_network_non_production,
-    data.google_project.security,
+    data.google_project.production.project_id,
+    data.google_project.staging.project_id,
+    data.google_project.billing.project_id,
+    data.google_project.development.project_id,
+    data.google_project.monitoring.project_id,
+    data.google_project.shared_network_production.project_id,
+    data.google_project.shared_network_non_production.project_id,
+    data.google_project.security.project_id,
   ])
   source            = "../modules/gcp/log-metrics"
-  google_project_id = each.value.project_id
+  google_project_id = each.value
 }

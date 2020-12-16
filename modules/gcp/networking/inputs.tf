@@ -1,9 +1,9 @@
-variable "google_project_id" {
-  description = "The GCP project_id to create log metrics to"
+variable "host_project_id" {
+  description = "The GCP project_id to create the VPC networks and subnets into"
   type        = string
 }
 
-variable "google_project_number" {
+variable "service_project_number" {
   description = "The GCP project number to create log metrics to"
   type        = string
 }

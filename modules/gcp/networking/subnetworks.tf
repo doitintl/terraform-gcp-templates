@@ -1,8 +1,8 @@
 resource "google_compute_subnetwork" "subnet_k8s" {
-  name          = "k8s-nodes"
+  name          = format("k8s-nodes-%s", var.vpc_name)
   ip_cidr_range = var.subnet_k8s_nodes_ip_cidr_range
   region        = var.region
-  project       = var.google_project_id
+  project       = var.host_project_id
   network       = google_compute_network.vpc.id
 
   private_ip_google_access = true
@@ -17,19 +17,19 @@ resource "google_compute_subnetwork" "subnet_k8s" {
 }
 
 resource "google_compute_subnetwork" "subnet_dbs" {
-  name                     = "dbs"
+  name                     = format("dbs-%s", var.vpc_name)
   ip_cidr_range            = var.subnet_dbs_ip_cidr_range
   region                   = var.region
-  project                  = var.google_project_id
+  project                  = var.host_project_id
   network                  = google_compute_network.vpc.id
   private_ip_google_access = true
 }
 
 resource "google_compute_subnetwork" "subnet_vms" {
-  name                     = "vms"
+  name                     = format("vms-%s", var.vpc_name)
   ip_cidr_range            = var.subnet_vms_ip_cidr_range
   region                   = var.region
-  project                  = var.google_project_id
+  project                  = var.host_project_id
   network                  = google_compute_network.vpc.id
   private_ip_google_access = true
 }

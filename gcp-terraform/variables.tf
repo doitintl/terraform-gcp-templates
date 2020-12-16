@@ -1,5 +1,5 @@
 variable "org_domain" {
-  default = "gotamedia.se"
+  default = "example.corp"
 }
 
 variable "billing_account_id" {
@@ -11,7 +11,7 @@ variable "org_id" {
 }
 
 variable "folder_id" {
-  default = "folders/854148447260" # CHANGE: folder in playground
+  default = "folders/747973543401" # CHANGE: folder in playground
 }
 
 variable "region" {
@@ -19,5 +19,5 @@ variable "region" {
 }
 
 variable "shared_suffix" {
-  default = "gotamedia"
+  default = "bki"
 }

@@ -1,5 +1,5 @@
 variable "shared_suffix" {
-  default = "gotamedia"
+  default = "bki"
 }
 
 variable "region" {

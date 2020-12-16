@@ -15,7 +15,7 @@ terraform {
     }
   }
   //  backend "gcs" {
-  //    bucket  = terraform-automation-gotamedia"
+  //    bucket  = terraform-automation-examplecorp"
   //    prefix  = "states/terraform"
   //  }
 }

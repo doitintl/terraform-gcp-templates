@@ -2,10 +2,10 @@
 
 # production (Shared VPC Host project)
 resource "google_project" "shared_network_production" {
-  name      = "shared-network-production"
+  name      = "shared-nw-prod"
   folder_id = google_folder.shared_services.name
   project_id = format(
-    "shared-network-production-%s",
+    "shared-nw-prod-%s",
     var.shared_suffix,
   )
   billing_account = var.billing_account_id
@@ -17,10 +17,10 @@ resource "google_project" "shared_network_production" {
 
 # non-production (Shared VPC Host project)
 resource "google_project" "shared_network_non_production" {
-  name      = "shared-network-non-production"
+  name      = "shared-nw-non-prod"
   folder_id = google_folder.shared_services.name
   project_id = format(
-    "shared-network-non-production-%s",
+    "shared-nw-non-prod-%s",
     var.shared_suffix,
   )
   billing_account = var.billing_account_id
@@ -127,14 +127,21 @@ resource "google_project_service" "shared_network_non_production" {
 }
 
 resource "google_project_service" "billing" {
-  for_each = local.billing_project_services
-  project  = google_project.billing.project_id
-  service  = each.value
+  for_each                   = local.billing_project_services
+  project                    = google_project.billing.project_id
+  service                    = each.value
+  disable_dependent_services = true
 }
 
 resource "google_project_service" "monitoring" {
   for_each = local.monitoring_project_services
   project  = google_project.monitoring.project_id
+  service  = each.value
+}
+
+resource "google_project_service" "development" {
+  for_each = local.isolated_projects_common_api_services
+  project  = google_project.development.project_id
   service  = each.value
 }
 

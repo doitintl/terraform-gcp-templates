@@ -1,9 +1,9 @@
 data "google_project" "shared_network_production" {
-  project_id = format("shared-network-production-%s", var.shared_suffix)
+  project_id = format("shared-nw-prod-%s", var.shared_suffix)
 }
 
 data "google_project" "shared_network_non_production" {
-  project_id = format("shared-network-non-production-%s", var.shared_suffix)
+  project_id = format("shared-nw-non-prod-%s", var.shared_suffix)
 }
 
 data "google_project" "production" {

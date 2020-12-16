@@ -11,6 +11,7 @@ locals {
     "roles/resourcemanager.projectCreator",
     "roles/resourcemanager.projectDeleter",
     "roles/accesscontextmanager.policyEditor",
+    "roles/compute.xpnAdmin",
   ])
 }
 

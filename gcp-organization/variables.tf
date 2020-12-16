@@ -1,5 +1,5 @@
 variable "shared_suffix" {
-  default = "gotamedia"
+  default = "bki"
 }
 
 variable "region" {
@@ -15,46 +15,55 @@ variable "org_id" {
 }
 
 variable "folder_id" {
-  default = "folders/854148447260" # CHANGE: folder in playground
+  default = "folders/747973543401" # CHANGE: folder in playground
 }
 
 variable "billing_account_id" {
-  default = "0108E8-421216-F47AFD" # DoiT Playground
+  default = "01A29B-B56F30-AA7597" # DoiT Playground
 }
 
 variable "directory_customer_id" {
   type        = set(string)
   description = "Get organization DIRECTORY_CUSTOMER_ID field with 'gcloud alpha organizations list'"
-  default     = ["C03lk2tjc"]
+  default = [
+    "C01h4gmiw", # DoiT Playground org
+    "C03rw2ty2", # DoiT org
+  ]
 }
 
 variable "audit_logs_bucket_name" {
-  default = "gotamedia-audit-logs"
+  default = "audit-logs"
 }
 
 # IAM groups (set up in Cloud Identity or GSuite)
 # CHANGE: using personal domain for testing / demo
 variable "group_org_admins" {
-  default = "group:admingcp@gotamedia.se"
+  type    = set(string)
+  default = ["group:admingcp@example.corp"]
 }
 
 variable "group_billing_admins" {
-  default = "group:billinggcp@gotamedia.se"
+  type    = set(string)
+  default = ["group:billinggcp@example.corp"]
 }
 
 variable "group_security_admins" {
-  default = "group:securitygcp@gotamedia.se"
+  type    = set(string)
+  default = ["group:securitygcp@example.corp"]
 }
 
 variable "group_network_admins" {
-  default = "group:networkgcp@gotamedia.se"
+  type    = set(string)
+  default = ["group:networkgcp@example.corp"]
 }
 
 variable "group_devops" {
-  default = "group:devopsgcp@gotamedia.se"
+  type    = set(string)
+  default = ["group:devopsgcp@example.corp"]
 }
 
 variable "group_developers" {
-  default = "group:devopsgcp@gotamedia.se"
+  type    = set(string)
+  default = ["group:devopsgcp@example.corp"]
 }
 
