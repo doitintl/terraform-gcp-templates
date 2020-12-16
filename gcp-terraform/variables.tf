@@ -17,3 +17,7 @@ variable "folder_id" {
 variable "region" {
   default = "europe-north1"
 }
+
+variable "shared_suffix" {
+  default = "gotamedia"
+}

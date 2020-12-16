@@ -12,4 +12,5 @@ resource "google_project" "terraform_automation" {
 resource "google_service_account" "terraform" {
   account_id   = "terraform"
   display_name = "terraform"
+  project      = google_project.terraform_automation.project_id
 }
