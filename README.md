@@ -1,14 +1,33 @@
 # Terraform GCP plans
 
-Execute the following plans first:
-* gcp-terraform
-* gcp-organization
+---
 
-Then feel free to execute the other plans as you need.
+## Prerequisites
 
-Once the gcp-terraform plan has been executed, you can use the resulting terraform GCP serviceaccount in your automated CI/CD.
+* A GCP organization
+* A top-level GCP folder within that organization where the plans will create resources within.
 
-You can also uncomment the GCS backend state configuration in every plan.
+---
+
+## Quickstart
+
+* Modify all variables, depending on the TF plan, within `variables.tf` or overriding them through [environment variables](https://www.terraform.io/docs/configuration/variables.html#environment-variables), according to your company, such as:
+    * `var.shared_suffix`, which should not be a long string.
+    * `var.group_*`
+    * `var.region`
+    * `var.billing_id`
+    * `var.org_id`
+    * `var.directory_customer_id`
+  
+* Execute the following plans first:
+  * gcp-terraform
+  * gcp-organization
+
+* Then feel free to execute the other plans as you need.
+
+* Once the gcp-terraform plan has been executed, you can use the resulting terraform GCP serviceaccount in your automated CI/CD.
+
+* You can then also uncomment the GCS backend state configuration in every plan.
 
 ---
 
