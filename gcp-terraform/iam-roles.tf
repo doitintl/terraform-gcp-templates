@@ -25,5 +25,5 @@ resource "google_folder_iam_binding" "terraform" {
 resource "google_billing_account_iam_member" "terraform" {
   billing_account_id = var.billing_account_id
   member             = format("serviceAccount:%s", google_service_account.terraform.email)
-  role               = "roles/billing.user"
+  role               = "roles/billing.projectManager"
 }
