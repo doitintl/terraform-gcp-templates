@@ -1,7 +1,7 @@
 resource "google_project" "terraform_automation" {
   name                = "terraform-automation"
   project_id          = format("terraform-automation-%s", var.shared_suffix)
-  org_id              = var.org_id
+  folder_id           = var.folder_id
   auto_create_network = false
   billing_account     = var.billing_account_id
   labels = {
