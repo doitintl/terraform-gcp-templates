@@ -115,15 +115,17 @@ locals {
 }
 
 resource "google_project_service" "shared_network_production" {
-  for_each = local.shared_projects_common_api_services
-  project  = google_project.shared_network_production.project_id
-  service  = each.value
+  for_each                   = local.shared_projects_common_api_services
+  project                    = google_project.shared_network_production.project_id
+  service                    = each.value
+  disable_dependent_services = true
 }
 
 resource "google_project_service" "shared_network_non_production" {
-  for_each = local.shared_projects_common_api_services
-  project  = google_project.shared_network_non_production.project_id
-  service  = each.value
+  for_each                   = local.shared_projects_common_api_services
+  project                    = google_project.shared_network_non_production.project_id
+  service                    = each.value
+  disable_dependent_services = true
 }
 
 resource "google_project_service" "billing" {
@@ -134,25 +136,29 @@ resource "google_project_service" "billing" {
 }
 
 resource "google_project_service" "monitoring" {
-  for_each = local.monitoring_project_services
-  project  = google_project.monitoring.project_id
-  service  = each.value
+  for_each                   = local.monitoring_project_services
+  project                    = google_project.monitoring.project_id
+  service                    = each.value
+  disable_dependent_services = true
 }
 
 resource "google_project_service" "development" {
-  for_each = local.isolated_projects_common_api_services
-  project  = google_project.development.project_id
-  service  = each.value
+  for_each                   = local.isolated_projects_common_api_services
+  project                    = google_project.development.project_id
+  service                    = each.value
+  disable_dependent_services = true
 }
 
 resource "google_project_service" "staging" {
-  for_each = local.isolated_projects_common_api_services
-  project  = google_project.staging.project_id
-  service  = each.value
+  for_each                   = local.isolated_projects_common_api_services
+  project                    = google_project.staging.project_id
+  service                    = each.value
+  disable_dependent_services = true
 }
 
 resource "google_project_service" "production" {
-  for_each = local.isolated_projects_common_api_services
-  project  = google_project.production.project_id
-  service  = each.value
+  for_each                   = local.isolated_projects_common_api_services
+  project                    = google_project.production.project_id
+  service                    = each.value
+  disable_dependent_services = true
 }
