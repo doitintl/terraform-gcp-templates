@@ -16,6 +16,8 @@ locals {
     "roles/accesscontextmanager.policyAdmin",
     "roles/resourcemanager.organizationViewer",
     "roles/compute.xpnAdmin",
+    "roles/billing.user",
+    "roles/orgpolicy.policyAdmin",
   ])
 }
 
