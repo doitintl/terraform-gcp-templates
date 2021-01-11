@@ -19,6 +19,10 @@ locals {
     "roles/billing.user",
     "roles/orgpolicy.policyAdmin",
   ])
+  bound_billing_account_iam_roles = toset([
+    "roles/billing.user",
+    "roles/logging.configWriter"
+  ])
 }
 
 resource "google_folder_iam_binding" "terraform" {
@@ -29,9 +33,10 @@ resource "google_folder_iam_binding" "terraform" {
 }
 
 resource "google_billing_account_iam_member" "terraform" {
+  for_each           = local.bound_billing_account_iam_roles
   billing_account_id = var.billing_account_id
   member             = format("serviceAccount:%s", google_service_account.terraform.email)
-  role               = "roles/billing.user"
+  role               = each.value
 }
 
 resource "google_organization_iam_member" "terraform" {
