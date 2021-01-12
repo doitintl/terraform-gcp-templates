@@ -21,8 +21,7 @@ locals {
   ])
   bound_billing_account_iam_roles = toset([
     "roles/billing.user",
-    "roles/logging.configWriter",
-    "billingAccounts.sinks.*"
+    "roles/logging.admin"
   ])
 }
 
