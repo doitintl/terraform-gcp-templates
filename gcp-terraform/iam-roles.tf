@@ -20,7 +20,7 @@ locals {
     "roles/orgpolicy.policyAdmin",
   ])
   bound_billing_account_iam_roles = toset([
-    "roles/billing.user",
+    "roles/billing.admin",
     "roles/logging.admin"
   ])
 }
