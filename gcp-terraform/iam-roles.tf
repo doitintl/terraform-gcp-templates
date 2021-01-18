@@ -25,11 +25,11 @@ locals {
   ])
 }
 
-resource "google_folder_iam_binding" "terraform" {
+resource "google_folder_iam_member" "terraform" {
   for_each = local.bound_folder_iam_roles
   folder   = data.google_folder.root.id
   role     = each.value
-  members  = [format("serviceAccount:%s", google_service_account.terraform.email)]
+  member   = format("serviceAccount:%s", google_service_account.terraform.email)
 }
 
 resource "google_billing_account_iam_member" "terraform" {

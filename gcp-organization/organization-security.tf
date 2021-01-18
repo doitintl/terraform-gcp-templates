@@ -1,56 +1,3 @@
-# IAM roles
-
-# org
-# resource "google_organization_iam_binding" "org_iam_org_admin" {
-#   org     = var.org_id
-#   role    = "roles/iam.organizationAdmin"
-#
-#   members = [
-#     var.group_org_admins
-#   ]
-# }
-#
-# resource "google_organization_iam_binding" "org_iam_billing_admin" {
-#   org     = var.org_id
-#   role    = "roles/billing.admin"
-#
-#   members = [
-#     var.group_billing_admins
-#   ]
-# }
-#
-# Billing Account User (tf-sa: org)
-# resource "google_organization_iam_binding" "org_iam_billing_user" {
-#   org     = var.org_id
-#   role    = "roles/billing.user"
-#
-#   members = [
-#     var.sa_terraform_admin
-#   ]
-# }
-#
-# Organization Policy Admin (tf-sa: org)
-# resource "google_organization_iam_binding" "org_iam_org_policy_admin" {
-#   org     = var.org_id
-#   role    = "roles/orgpolicy.policyAdmin"
-#
-#   members = [
-#     var.sa_terraform_admin
-#   ]
-# }
-#
-# Cloud Security Scanner Editor (security: org)
-# resource "google_organization_iam_binding" "org_iam_security_scanner_editor" {
-#   org     = var.org_id
-#   role    = "roles/cloudsecurityscanner.editor"
-#
-#   members = [
-#     var.group_security_admins
-#   ]
-# }
-
-# TODO: change (org) scoped bindings to google_organization_iam_binding (non-playground-org)
-
 # Viewer (security, network, devops: org)
 resource "google_folder_iam_binding" "folder_iam_viewer" {
   folder = data.google_folder.root.id
@@ -63,10 +10,11 @@ resource "google_folder_iam_binding" "folder_iam_viewer" {
 }
 
 # Security Admin (security: org)
-resource "google_folder_iam_binding" "folder_iam_security_admin" {
-  folder  = data.google_folder.root.id
-  role    = "roles/iam.securityAdmin"
-  members = var.group_security_admins
+resource "google_folder_iam_member" "folder_iam_security_admin" {
+  for_each = var.group_security_admins
+  folder   = data.google_folder.root.id
+  role     = "roles/iam.securityAdmin"
+  member   = each.value
 }
 
 # Compute Network Admin (network: org)
